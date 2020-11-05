@@ -5,11 +5,6 @@ import org.apache.log4j.Logger;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.healthnlp.deepphe.nlp.pipeline.DmsRunner;
-//import org.healthnlp.deepphe.spring.property.DeepPheProperties;
-//import org.healthnlp.deepphe.spring.service.Neo4jDriverService;
-//import org.neo4j.driver.Driver;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -24,9 +19,9 @@ import javax.annotation.PostConstruct;
  */
 @Service
 //public class StreamService extends Neo4jDriverService {
-public class StreamService {
+public class StreamPatientService {
 
-   static private final Logger LOGGER = Logger.getLogger( "StreamService" );
+   static private final Logger LOGGER = Logger.getLogger( "StreamPatientService" );
 
    static private volatile boolean _initialized = false;
 
@@ -51,7 +46,7 @@ public class StreamService {
             // The first access of a singleton enum instantiates it.
             DmsRunner.getInstance();
          } catch ( ExceptionInInitializerError initE ) {
-            System.out.println( "StreamService can't initialize " + initE.getMessage() );
+            System.out.println( "StreamPatientService can't initialize " + initE.getMessage() );
             throw new ResourceInitializationException( initE );
          }
          LOGGER.info( "Analysis Engine Initialized." );
@@ -63,16 +58,14 @@ public class StreamService {
 
    /**
     *
-    * @param docId document ID.
-    * @param text plaintext document.
-    * @return JSON with document extracted and summarized information ASAP.
+    * @param patientId patient ID.
+    * @return JSON with extracted information ASAP.
     * @throws AnalysisEngineProcessException if pipeline fails.
     */
-   public String summarizeDoc( final String docId,
-                               final String text ) throws AnalysisEngineProcessException {
-      LOGGER.info( "Independently Summarizing Document " + docId );
-      System.out.println( "Independently Summarizing Document " + docId );
-      return DmsRunner.getInstance().summarizeDoc( docId, text );
+   public String summarizePatient( final String patientId ) throws AnalysisEngineProcessException {
+      LOGGER.info( "Processing Patient " + patientId );
+      System.out.println( "Processing Patient " + patientId );
+      return DmsRunner.getInstance().summarizePatient( patientId );
    }
 
 

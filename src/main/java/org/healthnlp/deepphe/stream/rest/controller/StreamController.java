@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
  * @since 6/17/2020
  */
 @Component
-@Path("/process")
+@Path("/summarizeDoc")
 @Api( value = "StreamController" ) // Swagger
 public class StreamController {
 
@@ -54,49 +54,6 @@ public class StreamController {
             .status( Response.Status.OK )
             .entity( result )
             .build();
-   }
-
-
-   @POST
-   @Path( "/patient/{patientId}/doc/{docId}")
-   // Swagger
-   @ApiOperation(value = "Immediately process document text for a patient and store the results.")
-   @ApiResponses(value = {
-           @ApiResponse(code = 200, message = "Success"),
-           @ApiResponse(code = 401, message = "Unauthorized"),
-           @ApiResponse(code = 403, message = "Forbidden"),
-           @ApiResponse(code = 404, message = "Not Found"),
-           @ApiResponse(code = 500, message = "Failure")})
-   @Consumes(MediaType.TEXT_PLAIN)
-   @Produces(MediaType.TEXT_PLAIN)
-   public Response summarizeAndStoreDoc( @PathParam("patientId") final String patientId,
-                                 @PathParam("docId") final String docId,
-                                 final String text ) throws AnalysisEngineProcessException {
-      final String result = _streamService.summarizeAndStoreDoc( patientId, docId, text );
-      return Response
-              .status( Response.Status.OK )
-              .entity( result )
-              .build();
-   }
-
-   @POST
-   @Path( "/patient/{patientId}")
-   // Swagger
-   @ApiOperation(value = "Summarize a Patient based upon stored docs.")
-   @ApiResponses(value = {
-           @ApiResponse(code = 200, message = "Success"),
-           @ApiResponse(code = 401, message = "Unauthorized"),
-           @ApiResponse(code = 403, message = "Forbidden"),
-           @ApiResponse(code = 404, message = "Not Found"),
-           @ApiResponse(code = 500, message = "Failure")})
-   @Consumes(MediaType.TEXT_PLAIN)
-   @Produces(MediaType.TEXT_PLAIN)
-   public Response summarizePatient( @PathParam("patientId") final String patientId ) throws AnalysisEngineProcessException {
-      final String result = _streamService.summarizePatient( patientId );
-      return Response
-              .status( Response.Status.OK )
-              .entity( result )
-              .build();
    }
 
 

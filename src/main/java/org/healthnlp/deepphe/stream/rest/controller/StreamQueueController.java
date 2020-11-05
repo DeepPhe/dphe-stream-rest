@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
  * @since 6/17/2020
  */
 @Component
-@Path("/queue")
+@Path("/queuePatientDoc")
 @Api( value = "StreamQueueController" ) // Swagger
 public class StreamQueueController {
 
