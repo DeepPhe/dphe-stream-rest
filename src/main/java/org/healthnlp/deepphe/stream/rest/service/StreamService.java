@@ -60,34 +60,19 @@ public class StreamService {
       }
    }
 
-//   /**
-//    *
-//    * @param docId document ID.
-//    * @param text plaintext document.
-//    * @return JSON with document extracted and summarized information ASAP.
-//    * @throws AnalysisEngineProcessException if pipeline fails.
-//    */
-//   public String summarizeLoneDoc( final String docId,
-//                               final String text ) throws AnalysisEngineProcessException {
-//      LOGGER.info( "Independently Summarizing Document " + docId );
-//      System.out.println( "Independently Summarizing Document " + docId );
-//      return DmsRunner.getInstance().summarizeLoneDoc( docId, text );
-//   }
 
    /**
     *
-    * @param patientId patient ID.
     * @param docId document ID.
     * @param text plaintext document.
     * @return JSON with document extracted and summarized information ASAP.
     * @throws AnalysisEngineProcessException if pipeline fails.
     */
-   public String summarizeDoc( final String patientId,
-                               final String docId,
+   public String summarizeDoc( final String docId,
                                final String text ) throws AnalysisEngineProcessException {
-      LOGGER.info( "Independently Summarizing Document " + docId + " for patient " + patientId );
-      System.out.println( "Independently Summarizing Document " + docId + " for patient " + patientId );
-      return DmsRunner.getInstance().summarizeDoc( patientId, docId, text );
+      LOGGER.info( "Independently Summarizing Document " + docId );
+      System.out.println( "Independently Summarizing Document " + docId );
+      return DmsRunner.getInstance().summarizeDoc( docId, text );
    }
 
    /**
@@ -101,8 +86,8 @@ public class StreamService {
    public String summarizeAndStoreDoc( final String patientId,
                                final String docId,
                                final String text ) throws AnalysisEngineProcessException {
-      LOGGER.info( "Independently Summarizing and Storing Document " + docId + " for patient " + patientId );
-      System.out.println( "Independently Summarizing and Storing Document " + docId + " for patient " + patientId );
+      LOGGER.info( "Summarizing and Storing Document " + docId + " for patient " + patientId );
+      System.out.println( "Summarizing and Storing Document " + docId + " for patient " + patientId );
       return DmsRunner.getInstance().summarizeAndStoreDoc( patientId, docId, text );
    }
 

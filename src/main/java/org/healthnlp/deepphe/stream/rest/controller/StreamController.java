@@ -36,7 +36,7 @@ public class StreamController {
    }
 
    @POST
-   @Path( "/patient/{patientId}/doc/{docId}")
+   @Path( "/doc/{docId}")
    // Swagger
    @ApiOperation(value = "Immediately process document text for a patient.")
    @ApiResponses(value = {
@@ -47,10 +47,9 @@ public class StreamController {
          @ApiResponse(code = 500, message = "Failure")})
    @Consumes(MediaType.TEXT_PLAIN)
    @Produces(MediaType.TEXT_PLAIN)
-   public Response summarizeDoc( @PathParam("patientId") final String patientId,
-                                @PathParam("docId") final String docId,
+   public Response summarizeDoc( @PathParam("docId") final String docId,
                                 final String text ) throws AnalysisEngineProcessException {
-      final String result = _streamService.summarizeDoc( patientId, docId, text );
+      final String result = _streamService.summarizeDoc( docId, text );
       return Response
             .status( Response.Status.OK )
             .entity( result )
