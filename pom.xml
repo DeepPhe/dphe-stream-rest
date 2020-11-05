@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>org.healthnlp</groupId>
+   <artifactId>deepphe-stream-rest</artifactId>
+   <version>0.4.0</version>
+   <name>deepphe-stream-rest</name>
+   <description>Cancer Deep Phenotype Extraction (DeepPhe) Stream REST module</description>
+   <packaging>jar</packaging>
+
+   <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.3.1.RELEASE</version>
+      <relativePath/>
+   </parent>
+
+   <properties>
+      <ctakes.version>4.0.1-SNAPSHOT</ctakes.version>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+      <springframework.version>4.3.12.RELEASE</springframework.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   </properties>
+
+   <dependencies>
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-actuator</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-jersey</artifactId>
+         <exclusions>
+            <exclusion>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-tomcat</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-jetty</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-classic</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>io.swagger</groupId>
+         <artifactId>swagger-jersey2-jaxrs</artifactId>
+         <version>1.6.1</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.healthnlp</groupId>
+         <artifactId>deepphe-stream</artifactId>
+         <version>${project.version}</version>
+      </dependency>
+
+<!--      <dependency>-->
+<!--         <groupId>org.healthnlp</groupId>-->
+<!--         <artifactId>deepphe-spring</artifactId>-->
+<!--         <version>${project.version}</version>-->
+<!--      </dependency>-->
+
+   </dependencies>
+
+   <repositories>
+      <repository>
+         <id>apache.snapshots</id>
+         <name>Apache Development Snapshot Repository</name>
+         <url>https://repository.apache.org/content/groups/snapshots/</url>
+         <releases>
+            <enabled>false</enabled>
+         </releases>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+      </repository>
+   </repositories>
+
+   <build>
+         <plugins>
+
+            <plugin>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-maven-plugin</artifactId>
+               <version>2.3.2.RELEASE</version>
+            </plugin>
+
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-dependency-plugin</artifactId>
+               <executions>
+                  <execution>
+                     <id>resource-dependencies</id>
+                     <phase>package</phase>
+                     <goals>
+                        <goal>unpack</goal>
+                     </goals>
+                     <configuration>
+                        <artifactItems>
+                           <artifactItem>
+                              <groupId>org.healthnlp</groupId>
+                              <artifactId>deepphe-onto-db</artifactId>
+                              <version>${project.version}</version>
+                              <type>jar</type>
+                              <overWrite>true</overWrite>
+                              <outputDirectory>${basedir}/resources</outputDirectory>
+                           </artifactItem>
+                           <artifactItem>
+                              <groupId>org.healthnlp</groupId>
+                              <artifactId>deepphe-stream</artifactId>
+                              <version>${project.version}</version>
+                              <type>jar</type>
+                              <overWrite>true</overWrite>
+                              <outputDirectory>${basedir}/resources</outputDirectory>
+                           </artifactItem>
+                        </artifactItems>
+                        <includes>graph/**,**/ncit_plus_16ab.*</includes>
+                        <outputDirectory>${basedir}/resources</outputDirectory>
+                     </configuration>
+                  </execution>
+               </executions>
+            </plugin>
+         </plugins>
+   </build>
+</project>
