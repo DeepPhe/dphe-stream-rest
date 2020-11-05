@@ -15,7 +15,7 @@ mvn clean package
 ## Start the API HTTP server
 
 ````
-java -jar target/dphe-stream-rest-0.4.0.jar
+java -jar target/deepphe-stream-rest-0.4.0.jar
 ````
 
 ## API documentation
