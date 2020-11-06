@@ -36,7 +36,7 @@ public class StreamPatientController {
    }
 
 
-   @POST
+   @GET
    @Path( "/patient/{patientId}")
    // Swagger
    @ApiOperation(value = "Summarize a Patient based upon stored docs.")

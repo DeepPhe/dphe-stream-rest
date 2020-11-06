@@ -34,7 +34,7 @@ public class StreamQueueController {
       _streamQueueService = streamQueueService;
    }
 
-   @POST
+   @PUT
    @Path( "/patient/{patientId}/doc/{docId}")
    // Swagger
    @ApiOperation(value = "Queue document text for a patient.")

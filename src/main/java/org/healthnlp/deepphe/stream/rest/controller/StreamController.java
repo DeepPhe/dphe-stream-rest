@@ -35,7 +35,7 @@ public class StreamController {
       _streamService = streamService;
    }
 
-   @POST
+   @GET
    @Path( "/doc/{docId}")
    // Swagger
    @ApiOperation(value = "Immediately process document text for a patient.")

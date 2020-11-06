@@ -1,6 +1,8 @@
 package org.healthnlp.deepphe.stream.rest.config;
 
 import org.healthnlp.deepphe.stream.rest.controller.StreamController;
+import org.healthnlp.deepphe.stream.rest.controller.StreamDocController;
+import org.healthnlp.deepphe.stream.rest.controller.StreamPatientController;
 import org.healthnlp.deepphe.stream.rest.controller.StreamQueueController;
 import org.healthnlp.deepphe.stream.spring.config.AbstractJerseyConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,7 @@ public class StreamJerseyConfig extends AbstractJerseyConfig {
     */
    @Override
    protected Collection<Class<?>> getComponents() {
-      return Arrays.asList( StreamController.class, StreamQueueController.class );
+      return Arrays.asList( StreamController.class, StreamDocController.class, StreamQueueController.class, StreamPatientController.class );
    }
 
    /**

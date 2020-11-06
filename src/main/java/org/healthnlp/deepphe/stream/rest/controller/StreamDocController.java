@@ -36,7 +36,7 @@ public class StreamDocController {
    }
 
 
-   @POST
+   @PUT
    @Path( "/patient/{patientId}/doc/{docId}")
    // Swagger
    @ApiOperation(value = "Immediately process document text for a patient and store the results.")
