@@ -10,6 +10,7 @@ import org.healthnlp.deepphe.stream.spring.exception.mapper.WebApplicationExcept
 import org.healthnlp.deepphe.stream.spring.filter.CORSFilter;
 
 import java.util.Collection;
+import org.healthnlp.deepphe.stream.spring.filter.AuthFilter;
 
 
 /**
@@ -41,6 +42,7 @@ abstract public class AbstractJerseyConfig extends ResourceConfig {
       register( WebApplicationExceptionMapper.class );
 
       //Register filters
+      register(AuthFilter.class);
       register( CORSFilter.class );
 
       // By default, Jersey doesn't return any entities that would include validation errors to the client.
