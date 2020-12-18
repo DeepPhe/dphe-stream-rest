@@ -5,14 +5,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import javax.ws.rs.*;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
+import javax.ws.rs.core.Response;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.healthnlp.deepphe.stream.rest.service.StreamQueueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 
 /**
@@ -44,8 +44,8 @@ public class StreamQueueController {
          @ApiResponse(code = 403, message = "Forbidden"),
          @ApiResponse(code = 404, message = "Not Found"),
          @ApiResponse(code = 500, message = "Failure")})
-   @Consumes(MediaType.TEXT_PLAIN)
-   @Produces(MediaType.TEXT_PLAIN)
+   @Consumes(TEXT_PLAIN)
+   @Produces(APPLICATION_JSON)
    public Response queueAndStoreDoc( @PathParam("patientId") final String patientId,
                                 @PathParam("docId") final String docId,
                                 final String text ) throws AnalysisEngineProcessException {
