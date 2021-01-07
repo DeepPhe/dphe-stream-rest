@@ -9,9 +9,7 @@ import java.io.IOException;
 
 /**
  *
- * Jun 5, 2016 10:49:39 PM
- *
- * @author Kevin V. Bui (kvb2@pitt.edu)
+ * @author zhy19
  */
 @Provider
 public class CORSFilter implements ContainerResponseFilter {
