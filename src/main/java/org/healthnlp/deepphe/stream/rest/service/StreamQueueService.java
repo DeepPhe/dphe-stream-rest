@@ -1,9 +1,12 @@
 package org.healthnlp.deepphe.stream.rest.service;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.log4j.Logger;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.resource.ResourceInitializationException;
+import org.healthnlp.deepphe.neo4j.node.Text;
 import org.healthnlp.deepphe.nlp.pipeline.DmsRunner;
 //import org.healthnlp.deepphe.spring.property.DeepPheProperties;
 //import org.healthnlp.deepphe.spring.service.Neo4jDriverService;
@@ -72,9 +75,12 @@ public class StreamQueueService {
    public String queueAndStoreDoc( final String patientId,
                             final String docId,
                             final String text ) throws AnalysisEngineProcessException {
-      LOGGER.info( "Queueing Document " + docId );
-      System.out.println( "Queueing Document " + docId );
-      return DmsRunner.getInstance().queueAndStoreDoc( patientId, docId, text );
+      final String result = DmsRunner.getInstance().queueAndStoreDoc( patientId, docId, text );
+      final Text gText = new Text();
+      gText.setName( "Document Queued" );
+      gText.setValue( result );
+      final Gson gson = (new GsonBuilder()).setPrettyPrinting().create();
+      return gson.toJson( gText );
    }
 
 //   /**
