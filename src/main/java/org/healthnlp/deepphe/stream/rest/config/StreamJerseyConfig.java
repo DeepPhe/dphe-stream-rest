@@ -43,7 +43,7 @@ public class StreamJerseyConfig extends AbstractJerseyConfig {
     */
    @Override
    protected Collection<Class<?>> getComponents() {
-      return Arrays.asList( StreamController.class, StreamDocController.class, StreamOneDocController, StreamQueueController.class, StreamPatientController.class );
+      return Arrays.asList( StreamController.class, StreamDocController.class, StreamOneDocController.class, StreamQueueController.class, StreamPatientController.class );
    }
 
    /**
