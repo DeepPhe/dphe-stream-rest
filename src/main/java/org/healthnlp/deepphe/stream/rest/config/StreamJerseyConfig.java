@@ -2,6 +2,7 @@ package org.healthnlp.deepphe.stream.rest.config;
 
 import org.healthnlp.deepphe.stream.rest.controller.StreamController;
 import org.healthnlp.deepphe.stream.rest.controller.StreamDocController;
+import org.healthnlp.deepphe.stream.rest.controller.StreamOneDocController;
 import org.healthnlp.deepphe.stream.rest.controller.StreamPatientController;
 import org.healthnlp.deepphe.stream.rest.controller.StreamQueueController;
 import org.healthnlp.deepphe.stream.spring.config.AbstractJerseyConfig;
