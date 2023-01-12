@@ -30,9 +30,10 @@ public class CORSFilter implements ContainerResponseFilter {
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
         MultivaluedMap<String, Object> headers = responseContext.getHeaders();
         headers.add(ALLOW_ORIGIN_HEADER, "*");
-        headers.add(ALLOW_METHODS_HEADER, "POST, GET, OPTIONS, DELETE");
-        headers.add(MAX_AGE_HEADER, "3600");
-        headers.add(ALLOW_HEADER, "x-requested-with");
+        headers.add(ALLOW_METHODS_HEADER, "POST, GET, PUT, OPTIONS, DELETE");
+        // Cache the response to this preflight request in browser for the max age 86400 seconds (= 24 hours)
+        headers.add(MAX_AGE_HEADER, "86400");
+        headers.add(ALLOW_HEADER, "Authorization, Cache-Control, Content-Type");
     }
 
 }
