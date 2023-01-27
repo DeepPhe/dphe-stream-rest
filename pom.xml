@@ -5,7 +5,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.healthnlp</groupId>
    <artifactId>deepphe-stream-rest</artifactId>
-   <version>0.5.0</version>
+   <version>0.6.0</version>
    <name>deepphe-stream-rest</name>
    <description>Cancer Deep Phenotype Extraction (DeepPhe) Stream REST module</description>
    <packaging>jar</packaging>
