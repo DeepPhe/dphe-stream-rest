@@ -43,7 +43,9 @@ abstract public class AbstractJerseyConfig extends ResourceConfig {
 
       //Register filters
       register(AuthFilter.class);
-      register( CORSFilter.class );
+      
+      // Leave the CORS handling to deployment server
+      // register(CORSFilter.class);
 
       // By default, Jersey doesn't return any entities that would include validation errors to the client.
       // Enable Jersey bean validation errors to users
