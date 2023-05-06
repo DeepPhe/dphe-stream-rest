@@ -94,6 +94,7 @@
    </repositories>
 
    <build>
+      <finalName>deepphe-stream-rest</finalName>
          <plugins>
 
             <plugin>
