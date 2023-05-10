@@ -4,7 +4,7 @@ package org.healthnlp.deepphe.stream.rest.service;
 import org.apache.log4j.Logger;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.healthnlp.deepphe.nlp.pipeline.DmsRunner;
+import org.healthnlp.deepphe.nlp.pipeline.CrDmsRunner;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -44,7 +44,7 @@ public class StreamPatientService {
          System.out.println( "Initializing analysis engine ..." );
          try {
             // The first access of a singleton enum instantiates it.
-            DmsRunner.getInstance();
+            CrDmsRunner.getInstance();
          } catch ( ExceptionInInitializerError initE ) {
             System.out.println( "StreamPatientService can't initialize " + initE.getMessage() );
             throw new ResourceInitializationException( initE );
@@ -65,7 +65,7 @@ public class StreamPatientService {
    public String summarizePatient( final String patientId ) throws AnalysisEngineProcessException {
       LOGGER.info( "Processing Patient " + patientId );
       System.out.println( "Processing Patient " + patientId );
-      return DmsRunner.getInstance().summarizePatient( patientId );
+      return CrDmsRunner.getInstance().summarizePatient( patientId );
    }
 
 

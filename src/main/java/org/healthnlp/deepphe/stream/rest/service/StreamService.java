@@ -4,12 +4,7 @@ package org.healthnlp.deepphe.stream.rest.service;
 import org.apache.log4j.Logger;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.healthnlp.deepphe.nlp.pipeline.DmsRunner;
-//import org.healthnlp.deepphe.spring.property.DeepPheProperties;
-//import org.healthnlp.deepphe.spring.service.Neo4jDriverService;
-//import org.neo4j.driver.Driver;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.Bean;
+import org.healthnlp.deepphe.nlp.pipeline.CrDmsRunner;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -49,7 +44,7 @@ public class StreamService {
          System.out.println( "Initializing analysis engine ..." );
          try {
             // The first access of a singleton enum instantiates it.
-            DmsRunner.getInstance();
+            CrDmsRunner.getInstance();
          } catch ( ExceptionInInitializerError initE ) {
             System.out.println( "StreamService can't initialize " + initE.getMessage() );
             throw new ResourceInitializationException( initE );
@@ -72,7 +67,7 @@ public class StreamService {
                                final String text ) throws AnalysisEngineProcessException {
       LOGGER.info( "Independently Summarizing Document " + docId );
       System.out.println( "Independently Summarizing Document " + docId );
-      return DmsRunner.getInstance().summarizeDoc( docId, text );
+      return CrDmsRunner.getInstance().summarizeDoc( docId, text );
    }
 
 

@@ -7,12 +7,7 @@ import org.apache.log4j.Logger;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.healthnlp.deepphe.neo4j.node.Text;
-import org.healthnlp.deepphe.nlp.pipeline.DmsRunner;
-//import org.healthnlp.deepphe.spring.property.DeepPheProperties;
-//import org.healthnlp.deepphe.spring.service.Neo4jDriverService;
-//import org.neo4j.driver.Driver;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.Bean;
+import org.healthnlp.deepphe.nlp.pipeline.CrDmsRunner;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -52,7 +47,7 @@ public class StreamQueueService {
          System.out.println( "Initializing analysis engine ..." );
          try {
             // The first access of a singleton enum instantiates it.
-            DmsRunner.getInstance();
+            CrDmsRunner.getInstance();
          } catch ( ExceptionInInitializerError initE ) {
             System.out.println( "StreamQueueService can't initialize " + initE.getMessage() );
             throw new ResourceInitializationException( initE );
@@ -75,7 +70,7 @@ public class StreamQueueService {
    public String queueAndStoreDoc( final String patientId,
                             final String docId,
                             final String text ) throws AnalysisEngineProcessException {
-      final String result = DmsRunner.getInstance().queueAndStoreDoc( patientId, docId, text );
+      final String result = CrDmsRunner.getInstance().queueAndStoreDoc( patientId, docId, text );
       final Text gText = new Text();
       gText.setName( "Document Queued" );
       gText.setValue( result );

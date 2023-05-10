@@ -3,9 +3,8 @@ package org.healthnlp.deepphe.stream;
 import org.apache.log4j.Logger;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.healthnlp.deepphe.nlp.pipeline.DmsRunner;
+import org.healthnlp.deepphe.nlp.pipeline.CrDmsRunner;
 import org.healthnlp.deepphe.stream.rest.service.StreamDocService;
-import org.healthnlp.deepphe.stream.rest.service.StreamService;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -42,7 +41,7 @@ final public class PatientDocSummarizer {
             LOGGER.error( "Processing Failed:\n" + aeE.getMessage() );
             System.exit( -1 );
         }
-        DmsRunner.getInstance().close();
+        CrDmsRunner.getInstance().close();
         System.exit( 0 );
     }
 
